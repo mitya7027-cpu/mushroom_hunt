@@ -1,5 +1,5 @@
 // MainMenuScreen.kt — экран главного меню
-
+package ru.triplethall.mushroomhunt
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera

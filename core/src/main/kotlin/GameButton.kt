@@ -1,5 +1,5 @@
 // GameButton.kt — НАША кнопка, наследуемся от TextButton
-
+package ru.triplethall.mushroomhunt
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton

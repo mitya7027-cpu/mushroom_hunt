@@ -1,5 +1,5 @@
 // InfoPopup.kt — НАШ попап, наследуемся от Table
-
+package ru.triplethall.mushroomhunt
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
