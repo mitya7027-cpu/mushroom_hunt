@@ -1,4 +1,5 @@
 // Main.kt — директор игры
+package ru.triplethall.mushroomhunt
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
@@ -24,3 +25,4 @@ class Main : Game() {
         skin.dispose()
     }
 }
+
