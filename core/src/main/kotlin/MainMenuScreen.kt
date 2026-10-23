@@ -11,7 +11,7 @@ import ru.triplethall.mushroomhunt.Main
 class MainMenuScreen(private val game: Main) : Screen {
 
     private val camera = OrthographicCamera()
-    private val stage = Stage(FitViewport(800f, 1280f, camera)) // вертикальный мобильный формат
+    private val stage = Stage(FitViewport(1800f, 900f, camera)) // вертикальный мобильный формат
     private val root = Table()
 
     override fun show() {
