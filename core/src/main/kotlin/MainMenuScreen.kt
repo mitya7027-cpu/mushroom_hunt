@@ -37,15 +37,16 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         btnSettings.onClick = showPopup
         btnExit.onClick = showPopup
 
-        root.add(btnPlay).pad(24f)
+        root.add(btnPlay).pad(12f).row()
         root.add(btnRules).pad(12f).row()
-        root.add(btnSettings).pad(12f)
+        root.add(btnSettings).pad(12f).row()
         root.add(btnExit).pad(12f).row()
     }
 
     override fun render(delta: Float) {
         batch.begin()
-        batch.draw(menuBackgroundImg, 0f, 0f, Gdx.graphics.wi
+        batch.draw(menuBackgroundImg, 0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
+        batch.end()
         stage.act(delta)   // двигает анимации
         stage.draw()       // рисует всех актёров
 
@@ -61,5 +62,6 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
     override fun dispose() {
         stage.dispose()
         menuBackgroundImg.dispose()
+        batch.dispose()
     }
 }
