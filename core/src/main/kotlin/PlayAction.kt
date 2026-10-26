@@ -1,6 +1,4 @@
 // PlayAction.kt — что происходит при нажатии PLAY.
-// Каждый студент может дорастить СВОЙ action до настоящего поведения,
-// не трогая общий файл меню.
 package ru.triplethall.mushroomhunt
 
 import com.badlogic.gdx.scenes.scene2d.Stage
