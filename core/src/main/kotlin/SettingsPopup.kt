@@ -7,7 +7,7 @@ package ru.triplethall.mushroomhunt
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.scenes.scene2d.ui.*
-
+import com.badlogic.gdx.Gdx
 class SettingsPopup(skin: Skin) : Table() {
     init {
         setFillParent(true) // занять весь экран (затемнение под окошком)
@@ -40,13 +40,20 @@ class SettingsPopup(skin: Skin) : Table() {
                 //    Внутри: перезагрузка словаря + запоминание выбора в Preferences
                 //    (выбранный язык переживёт перезапуск игры).
                 Localization.setLanguage(selLanguage.selected)
-                // 2. Язык сменился, но надписи уже нарисованы старым текстом.
-                //    Самый простой и честный способ «перевести экран на лету» —
-                //    пересоздать попап: убрать старый и добавить новый, он соберётся
-                //    уже из свежих строк словаря.
-                val st = stage          // сцена, на которой мы висим
-                remove()                // уходим со сцены (старый попап умирает)
-                st.addActor(SettingsPopup(skin)) // и тут же рождаемся заново
+                // 2. Язык сменился, но надписи уже НАРИСОВАНЫ старым текстом:
+                //    кнопки меню собрались при входе в экран и сами себя
+                //    не переведут. Пересоздаём весь экран меню — он соберётся
+                //    из свежего словаря, а попап уйдёт вместе со старым экраном.
+                //    postRunnable = «сделай в начале следующего кадра»: менять
+                //    экран прямо посреди обработки клика опасно, кадр ещё
+                //    держит старую сцену.
+                Gdx.app.postRunnable {
+                    // Ссылку на Main мы нигде не хранили — и не надо:
+                    // libGDX сам знает главное приложение.
+                    val game = Gdx.app.applicationListener as Main
+                    game.screen.dispose() // setScreen сам не диспозит — не забыть!
+                    game.screen = MainMenuScreen(game)
+                }
             }
         })
 // --------------------------------------------------------------------

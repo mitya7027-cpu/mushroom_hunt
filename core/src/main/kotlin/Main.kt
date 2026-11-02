@@ -16,6 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
 //Импорты для шрифта с кириллицей (freetype-генератор):
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox
+import com.badlogic.gdx.scenes.scene2d.ui.Label
+import com.badlogic.gdx.scenes.scene2d.ui.List
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 
 class Main : Game() {
@@ -57,13 +61,39 @@ class Main : Game() {
             size = 22
             // Цвет по умолчанию — белый (можно красить и через стиль, как у кнопок)
             color = Color.WHITE
+
+            // ГЛАВНОЕ МЕСТО ЭТОЙ ЗАДАЧИ. По умолчанию freetype запекает в битмапу
+            // только DEFAULT_CHARS — это ASCII: латиница, цифры, базовые знаки.
+            // Русских букв там НЕТ: шрифт их «не знает», и вместо «ИГРАТЬ»
+            // рисуются пустоты или квадраты. Поэтому явно перечисляем всё,
+            // что хотим видеть: кириллицу и типографские знаки из наших текстов.
+            // Ё отдельно: в Юникоде она живёт ВНЕ основного блока А-я!
+            characters = FreeTypeFontGenerator.DEFAULT_CHARS + buildString {
+                for (c in 'а'..'я') append(c)   // строчные
+                for (c in 'А'..'Я') append(c)   // прописные
+                append("ёЁ")                    // ё — отдельно от блока
+                append("«»—–−…→№°")             // ёлочки, тире, стрелка из правил
+            }
         }
         cyrillicFont = fontGenerator!!.generateFont(fontParams)
 
         // Подменяем шрифт скина: кладём свой ПОД ТЕМ ЖЕ ИМЕНЕМ «default-font».
-        // Теперь ВСЕ элементы (Label, TextButton, попапы) рисуют кириллицу,
-        // а мы ничего в uiskin.json не трогали.
         skin.add("default-font", cyrillicFont)
+
+        // НО! Одного add() мало — важный урок, как устроен Skin:
+        // uiskin.json при загрузке РАЗРЕШИЛ имена шрифтов в стилях — каждый
+        // стиль (LabelStyle, CheckBoxStyle...) уже держит прямую ССЫЛКУ на
+        // старый bitmap-шрифт. add() обновляет ресурс в карте скина, но НЕ
+        // трогает уже собранные стили. Поэтому меню (шрифт выдаём руками)
+        // рисовало кириллицу, а Label-ы в попапах — пустоту.
+        // Лечим: перепривязываем шрифт во всех дефолтных стилях скина.
+        cyrillicFont?.let { font ->
+            skin.get(Label.LabelStyle::class.java).font = font            // надписи
+            skin.get(TextButton.TextButtonStyle::class.java).font = font  // кнопки
+            skin.get(CheckBox.CheckBoxStyle::class.java).font = font      // тумблеры
+            skin.get(SelectBox.SelectBoxStyle::class.java).font = font    // выпадашка
+            skin.get(List.ListStyle::class.java).font = font              // список внутри выпадашки
+        }
         // ------------------------------------------------------------------
 
         // Берём текстурку кнопки из папки
@@ -104,10 +134,18 @@ class Main : Game() {
     // dispose() вызывается при выходе из игры. Освобождаем видеопамять.
     // Правило: кто создал ресурс (Texture, Skin, Batch) — тот и dispose().
     override fun dispose() {
-        skin.dispose()
-        buttonTexture.dispose()
-        // Шрифт и генератор — тоже ресурсы (генератор держит TTF-файл в памяти)
-        cyrillicFont?.dispose()
+        // Порядок смерти — обратный порядку рождения.
+        // 1) Генератор шрифта: шрифт уже сгенерирован, TTF в памяти не нужен.
+        //    Диспозить его ПОСЛЕ generateFont безопасно — шрифт хранит свою копию.
         fontGenerator?.dispose()
+
+        // 2) Skin. ВАЖНО для студентоты: skin.dispose() сам убивает ВСЁ,
+        //    что в него положили через skin.add(...) — включая наш
+        //    «default-font». Руками его диспозить НЕ надо: двойной dispose
+        //    и даёт «already disposed».
+        skin.dispose()
+
+        // 3) Текстуру кнопки в skin не клали — убиваем руками.
+        buttonTexture.dispose()
     }
 }
