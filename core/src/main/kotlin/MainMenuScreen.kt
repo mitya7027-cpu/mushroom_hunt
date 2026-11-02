@@ -44,10 +44,14 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         stage.addActor(root) // и добавляем её на сцену первой (фон для кнопок)
 
         // Четыре кнопки: наш класс GameButton (текст + скин-стиль).
-        val btnPlay = GameButton("PLAY", game.skin, "menu")
-        val btnRules = GameButton("RULES", game.skin, "menu")
-        val btnSettings = GameButton("SETTINGS", game.skin, "menu")
-        val btnExit = GameButton("EXIT", game.skin, "menu")
+        // Текст НЕ хардкодим, а берём из словаря локализации по ключу:
+        // Localization["menu.play"] вернёт "ИГРАТЬ" или "PLAY" — смотря
+        // какой язык выбрали в настройках. Все строки игры живут в
+        // assets/i18n/bundle*.properties — см. Localization.kt.
+        val btnPlay = GameButton(Localization["menu.play"], game.skin, "menu")
+        val btnRules = GameButton(Localization["menu.rules"], game.skin, "menu")
+        val btnSettings = GameButton(Localization["menu.settings"], game.skin, "menu")
+        val btnExit = GameButton(Localization["menu.exit"], game.skin, "menu")
 
         // Каждой кнопке — СВОЙ класс-действие (отдельный файл *Action.kt).
         // Меню только знакомит кнопку с действием; сама логика живёт в тех файлах.
