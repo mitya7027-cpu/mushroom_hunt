@@ -32,8 +32,10 @@ class PlayScreen(private val game: Main) : ScreenAdapter() {
         stage.addActor(root) // Добавили кноаку полностью
 
 
-        // Тут делаем дейстаие при нажатие, в этом слцчае возвращаем в меню
-        val btnBack = GameButton("Bacl to menu", game.skin)
+        // Тут делаем дейстаие при нажатие, в этом слцчае возвращаем в меню.
+        // Текст кнопки — из словаря локализации (bundle*.properties),
+        // заодно ушла старая опечатка «Bacl» :)
+        val btnBack = GameButton(Localization["game.back"], game.skin)
         btnBack.onClick = {
             // переключаем
             game.setScreen(MainMenuScreen(game))
