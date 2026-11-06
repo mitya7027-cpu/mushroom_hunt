@@ -4,6 +4,10 @@ apply plugin: "kotlin"
 dependencies {
   api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
+  // gdx-freetype: генерация BitmapFont из обычного .ttf-шрифта прямо на лету.
+  // Нужен, чтобы рисовать кириллицу: дефолтный bitmap-шрифт скина
+  // содержит только латиницу и цифры.
+  api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
   api "com.github.libgdx:box2dlights:$box2dlightsVersion"
   api "com.github.tommyettinger:anim8-gdx:$anim8Version"
   api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

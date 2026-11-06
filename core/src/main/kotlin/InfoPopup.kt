@@ -23,7 +23,8 @@ class InfoPopup(message: String, skin: Skin) : Table() {
         val label = Label(message, skin)
 
         // Кнопка закрытия — наш же GameButton. Композиция: попап СОДЕРЖИТ кнопку.
-        val btnClose = GameButton("CLOSE", skin)
+        // Текст — из словаря локализации, как и везде.
+        val btnClose = GameButton(Localization["common.close"], skin)
         btnClose.onClick = { remove() } // remove() = «уйти со сцены». Актёр удаляет сам себя.
 
         // Внутренняя коробочка-карточка, тоже Table.
