@@ -1,5 +1,6 @@
 package ru.triplethall.mushroomhunt
 
+import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
@@ -10,6 +11,9 @@ class InGameOptionsPopup(
 ) : Table() {
     init {
         setFillParent(true)
+        // Перехватываем касания по затемнённому фону, чтобы экран игры
+        // не получал нажатия, пока открыто окно опций.
+        touchable = Touchable.enabled
         background(skin.newDrawable("white", 0f, 0f, 0f, 0.6f))
 
         val panel = Table(skin)

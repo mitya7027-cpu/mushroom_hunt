@@ -3,6 +3,7 @@
 package ru.triplethall.mushroomhunt
 
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
+import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
@@ -13,6 +14,8 @@ class InfoPopup(message: String, skin: Skin) : Table() {
         // setFillParent(true) — растянуть себя на весь родитель (весь экран).
         // Без этого таблица сожмётся до размеров содержимого.
         setFillParent(true)
+        // Полноэкранная таблица блокирует клики по кнопкам за попапом.
+        touchable = Touchable.enabled
 
         // background(...) — фон таблицы.
         // skin.newDrawable("white", r,g,b,a) — берём белую текстуру из скина и красим.

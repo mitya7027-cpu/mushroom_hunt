@@ -56,10 +56,10 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         // Каждой кнопке — СВОЙ класс-действие (отдельный файл *Action.kt).
         // Меню только знакомит кнопку с действием; сама логика живёт в тех файлах.
         // Хочешь поменять поведение кнопки — иди в ЕЁ файл, сюда не лезь.
-        btnPlay.onClick = { PlayAction(game, stage).run() }
-        btnRules.onClick = { RulesAction(game, stage).run() }
-        btnSettings.onClick = { SettingsAction(game, stage).run() }
-        btnExit.onClick = { ExitAction(game, stage).run() }
+        btnPlay.onClick = { if (!isPopupOpen()) PlayAction(game, stage).run() }
+        btnRules.onClick = { if (!isPopupOpen()) RulesAction(game, stage).run() }
+        btnSettings.onClick = { if (!isPopupOpen()) SettingsAction(game, stage).run() }
+        btnExit.onClick = { if (!isPopupOpen()) ExitAction(game, stage).run() }
 
         // Раскладка: add(...) кладёт кнопку в ячейку, pad — отступы вокруг,
         // row() — перенос строки (следующая кнопка ниже), итого вертикальный столбик.
@@ -72,6 +72,11 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         column.add(btnExit).width(250f).height(60f).pad(12f).row()
 
         root.add(column).expand().left().padLeft(80f)
+    }
+
+    /** Не запускаем действие меню, пока на сцене открыт хотя бы один попап. */
+    private fun isPopupOpen(): Boolean = stage.actors.any { actor ->
+        actor is RulesPopup || actor is SettingsPopup || actor is ExitConfirmPopup || actor is InfoPopup
     }
 
     // render(delta) вызывается КАЖДЫЙ КАДР. delta = секунд с прошлого кадра.

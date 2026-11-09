@@ -5,12 +5,15 @@ package ru.triplethall.mushroomhunt
 // Слушатель смены языка живёт в пакете scene2d.utils, а не scene2d.ui —
 // звёздочного импорта ui.* для него мало, тащим явно:
 import com.badlogic.gdx.scenes.scene2d.Actor
+import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.scenes.scene2d.ui.*
 import com.badlogic.gdx.Gdx
 class SettingsPopup(skin: Skin) : Table() {
     init {
         setFillParent(true) // занять весь экран (затемнение под окошком)
+        // Затемняющий слой должен перехватывать касания вне карточки настроек.
+        touchable = Touchable.enabled
         background(skin.newDrawable("white", 0f, 0f, 0f, 0.6f)) // полупрозрачная тень
 // === ВИДЖЕТЫ ===
 // Все надписи — из словаря локализации (assets/i18n/bundle*.properties).

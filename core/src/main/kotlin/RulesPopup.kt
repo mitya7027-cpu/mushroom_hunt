@@ -1,8 +1,12 @@
 package ru.triplethall.mushroomhunt
 import com.badlogic.gdx.scenes.scene2d.ui.*
+import com.badlogic.gdx.scenes.scene2d.Touchable
 class RulesPopup(skin: Skin) : Table() {
     init {
         setFillParent(true)
+        // Корневой слой принимает касания по всей площади затемнения.
+        // Иначе клики сквозь прозрачные места попапа попадут в кнопки меню.
+        touchable = Touchable.enabled
         background(skin.newDrawable("white", 0f, 0f, 0f, 0.6f))
 // Многострочный текст берём из словаря локализации — ключ rules.text.
 // Раньше здесь лежала огромная строка прямо в коде: перевести её было
