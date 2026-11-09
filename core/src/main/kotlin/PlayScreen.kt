@@ -32,17 +32,14 @@ class PlayScreen(private val game: Main) : ScreenAdapter() {
         stage.addActor(root) // Добавили кноаку полностью
 
 
-        // Тут делаем дейстаие при нажатие, в этом слцчае возвращаем в меню.
-        // Текст кнопки — из словаря локализации (bundle*.properties),
-        // заодно ушла старая опечатка «Bacl» :)
-        val btnBack = GameButton(Localization["game.back"], game.skin)
-        btnBack.onClick = {
-            // переключаем
-            game.setScreen(MainMenuScreen(game))
-            // после за собой нужно убрать
-            dispose()
-        }
-        root.add(btnBack) // Ии... у нас есть кнопка!
+        val btnOptions = GameButton(Localization["game.options"], game.skin)
+        btnOptions.onClick = { stage.addActor(InGameOptionsPopup(game.skin) { returnToMenu() }) }
+        root.add(btnOptions)
+    }
+
+    private fun returnToMenu() {
+        game.setScreen(MainMenuScreen(game))
+        dispose()
     }
 
     // тут я пока сам не понимаю, что такое, но по названию скорее всего рендер картинки
