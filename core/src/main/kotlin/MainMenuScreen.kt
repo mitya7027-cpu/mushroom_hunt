@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.viewport.FitViewport
 
@@ -52,6 +53,16 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         val btnRules = GameButton(Localization["menu.rules"], game.skin, "menu")
         val btnSettings = GameButton(Localization["menu.settings"], game.skin, "menu")
         val btnExit = GameButton(Localization["menu.exit"], game.skin, "menu")
+        val btnContinueGame = GameButton(Localization["menu.ContinueGame"], game.skin, "menu")
+
+        //Добавляем свойства кнопкам
+        btnContinueGame.isVisible = false
+        btnContinueGame.touchable = Touchable.disabled
+        if (game.gameState.ingame) {
+            btnContinueGame.isVisible = true
+            btnContinueGame.touchable = Touchable.enabled
+        }
+
 
         // Каждой кнопке — СВОЙ класс-действие (отдельный файл *Action.kt).
         // Меню только знакомит кнопку с действием; сама логика живёт в тех файлах.
@@ -60,6 +71,9 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         btnRules.onClick = { if (!isPopupOpen()) RulesAction(game, stage).run() }
         btnSettings.onClick = { if (!isPopupOpen()) SettingsAction(game, stage).run() }
         btnExit.onClick = { if (!isPopupOpen()) ExitAction(game, stage).run() }
+        btnContinueGame.onClick = { if (!isPopupOpen()) ContinueGameAction(game, stage).run() }
+
+        
 
         // Раскладка: add(...) кладёт кнопку в ячейку, pad — отступы вокруг,
         // row() — перенос строки (следующая кнопка ниже), итого вертикальный столбик.
@@ -70,6 +84,7 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         column.add(btnRules).width(250f).height(60f).pad(12f).row()
         column.add(btnSettings).width(250f).height(60f).pad(12f).row()
         column.add(btnExit).width(250f).height(60f).pad(12f).row()
+        column.add(btnContinueGame).width(250f).height(60f).pad(12f).row()
 
         root.add(column).expand().left().padLeft(80f)
     }

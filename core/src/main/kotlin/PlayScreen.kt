@@ -12,12 +12,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.viewport.FitViewport
 
 
+
+
 class PlayScreen(private val game: Main) : ScreenAdapter() {
     private val camera = OrthographicCamera()
     private val stage = Stage(FitViewport(900f, 450f, camera))
     private val batch = SpriteBatch()
     private val shapeRenderer = ShapeRenderer()
     private val player = Player()
+
+    init {
+        game.gameState.ingame = true
+    }
+
 
 //    Это у нас задник, который в главном меню
     private val bg = Texture(Gdx.files.internal("main-menu1.png"))
