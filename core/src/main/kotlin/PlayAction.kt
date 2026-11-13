@@ -8,8 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 class PlayAction(private val game: Main, private val stage: Stage) : MenuAction {
 
     override fun run() {
-       val menu = game.screen
-       game.setScreen(IntroScreen(game))
-       menu.dispose()
+       game.setScreen(PlayScreen(game))
     }
 }

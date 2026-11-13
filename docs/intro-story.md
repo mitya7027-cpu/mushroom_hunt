@@ -1,19 +1,19 @@
-# Вступление «Лесная тропа»
+# Предыстория «Лесная тропа»
 
-История разбита на пять коротких карточек. В игре следующий фрагмент открывается нажатием на карточку или кнопку. После последней страницы кнопка запускает игру.
+Текст предыстории от первого лица.
 
 ## Русский текст
 
-1. Я всего лишь решил срезать путь. Тропа казалась знакомой, и я был уверен, что скоро выйду к дороге. Но шум машин стих, а каждый поворот уводил меня всё глубже под кроны.
-2. Я не заметил, как опустился туман. Телефон разрядился. Метки, которые я оставлял на деревьях, начали повторяться. Я уже не понимал, иду ли по кругу.
-3. В сумерках я почувствовал запах дыма. На поляне горел небольшой костёр, рядом стояла корзина грибов. У огня никого не было. Только длинная тень тянулась от пламени к деревьям.
-4. Тень шевельнулась. Из-за ствола вышел высокий силуэт: бледный череп обрамляли рога, а тело — обрывки коры и ткани. Он назвался хозяином леса и сказал, что может вывести меня.
-5. Фигура поставила между нами корзину и тихо предложила сыграть. Я посмотрел на грибы, потом на маску. Он что, и правда предлагает поиграть?
+1. Я сбился с тропы ещё до темноты. Телефон погас, а лес вокруг стал каким-то чужим: деревья попадались одни и те же, но дорога назад не находилась.
+2. Между стволами мелькнуло что-то высокое. Я успел разглядеть бледный череп и рога — и замер. Существо повернуло голову прямо ко мне. Я бросился бежать.
+3. Я мчался наугад, цеплялся курткой за ветки и спотыкался о корни. За спиной не было слышно шагов, но тень между деревьями двигалась быстрее меня.
+4. Ветка хлестнула по плечу и зацепилась за ремень рюкзака. Меня резко дёрнуло назад, и я рухнул в мох. Когда я поднял голову, Леший уже стоял рядом. Он не ударил меня — только указал на огонь в нескольких шагах.
+5. У костра стояла корзина грибов. Леший сказал, что покажет дорогу, если я сыграю с ним. Я посмотрел на корзину, потом на тёмный лес за спиной. Он что, и правда предлагает мне поиграть?
 
 ## English text
 
-1. I only meant to take a shortcut. The path seemed familiar, and I was sure it would lead back to the road. Then the sound of cars faded, and every turn brought me deeper beneath the trees.
-2. The fog came down before I noticed. My phone had died. The marks I thought I had left on the trees began appearing again and again. I could no longer tell whether I was walking in circles.
-3. At dusk, I smelled smoke. A small campfire burned in a clearing, beside a basket of mushrooms. No one sat by it. Only a long shadow stretched from the flames to the tree line.
-4. The shadow moved. A tall figure stepped from behind a trunk, its pale skull framed by antlers and scraps of bark. It called itself the keeper of the forest and said it could show me the way out.
-5. It set the basket between us and quietly offered me a game. I looked at the mushrooms, then at the mask. Was it really asking me to play?
+1. I lost the trail before nightfall. My phone went dark, and the forest began to feel wrong: the same trees kept appearing, but I could not find the way back.
+2. Something tall flickered between the trunks. I caught a glimpse of a pale skull and antlers, then froze. The creature turned its head straight toward me. I ran.
+3. I sprinted blindly, snagging my jacket on branches and stumbling over roots. I heard no footsteps behind me, but a shadow between the trees was moving faster than I was.
+4. A branch struck my shoulder and caught my backpack strap. I was yanked backward and fell into the moss. When I looked up, the Leshy was already beside me. It did not strike; it only pointed to a fire a few steps away.
+5. A basket of mushrooms stood beside the fire. The Leshy said it would show me the way if I played a game. I looked at the basket, then at the dark woods behind me. Was it really asking me to play?
