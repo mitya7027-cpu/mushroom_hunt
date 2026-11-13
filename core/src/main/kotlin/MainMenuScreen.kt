@@ -44,9 +44,9 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
         root.setFillParent(true)
         stage.addActor(root) // и добавляем её на сцену первой (фон для кнопок)
 
-        // Четыре кнопки: наш класс GameButton (текст + скин-стиль).
+        // Кнопки создаём из локализованных подписей.
         // Текст НЕ хардкодим, а берём из словаря локализации по ключу:
-        // Localization["menu.play"] вернёт "ИГРАТЬ" или "PLAY" — смотря
+        // Localization["menu.play"] вернёт "НОВАЯ ИГРА" или "NEW GAME" — смотря
         // какой язык выбрали в настройках. Все строки игры живут в
         // assets/i18n/bundle*.properties — см. Localization.kt.
         val btnPlay = GameButton(Localization["menu.play"], game.skin, "menu")
@@ -80,11 +80,12 @@ class MainMenuScreen(private val game: Main) : ScreenAdapter() {
 
         val column = Table()
 
+        // Если текущая игровая сессия есть, продолжение стоит первым пунктом.
+        column.add(btnContinueGame).width(250f).height(60f).pad(12f).row()
         column.add(btnPlay).width(250f).height(60f).pad(12f).row()
         column.add(btnRules).width(250f).height(60f).pad(12f).row()
         column.add(btnSettings).width(250f).height(60f).pad(12f).row()
         column.add(btnExit).width(250f).height(60f).pad(12f).row()
-        column.add(btnContinueGame).width(250f).height(60f).pad(12f).row()
 
         root.add(column).expand().left().padLeft(80f)
     }

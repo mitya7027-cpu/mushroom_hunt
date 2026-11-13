@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 class PlayAction(private val game: Main, private val stage: Stage) : MenuAction {
 
     override fun run() {
-       game.setScreen(PlayScreen(game)) // Меню уходит в тень и мы переключаемся на сцену с игрой
+       val menu = game.screen
+       game.setScreen(IntroScreen(game))
+       menu.dispose()
     }
 }
